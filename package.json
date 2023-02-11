@@ -1,0 +1,22 @@
+{
+  "name": "mapbox-gl-draw-paint-mode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piraveenankirupakaran/mapbox-gl-draw-paint-mode.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/piraveenankirupakaran/mapbox-gl-draw-paint-mode/issues"
+  },
+  "homepage": "https://github.com/piraveenankirupakaran/mapbox-gl-draw-paint-mode#readme"
+}
