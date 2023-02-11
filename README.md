@@ -8,3 +8,5 @@ This mode used to be one of the core modes prior to the `v1.0.0` release of Mapb
 ## Usage
 
 To install:
+`npm i mapbox-gl-draw-paint-mode`
+
