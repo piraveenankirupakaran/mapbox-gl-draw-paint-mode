@@ -30,6 +30,7 @@ const App = () => {
       controls: {
         polygon: true,
         trash: true,
+        line_string: true,
       },
       modes: {
         ...MapboxDraw.modes,
