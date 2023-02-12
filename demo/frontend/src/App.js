@@ -79,6 +79,7 @@ const App = () => {
         className="custom_btn"
         onClick={() => {
           console.log(mapboxDrawRef.current.getAll());
+          console.log(mapRef.current.queryRenderedFeatures());
         }}
       >
         Get Feature Collection (Check Console)
