@@ -14,6 +14,9 @@ const App = () => {
   const mapboxDrawRef = useRef(null);
 
   useEffect(() => {
+    if (!mapContainer) {
+      return;
+    }
     mapRef.current = new maplibregl.Map({
       container: mapContainer.current,
       style:
