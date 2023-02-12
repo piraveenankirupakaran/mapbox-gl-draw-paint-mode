@@ -1,11 +1,12 @@
 {
   "name": "mapbox-gl-draw-paint-mode",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "",
-  "main": "index.js",
-  "directories": {
-    "lib": "lib"
-  },
+  "main": "./src/index.js",
+  "files": [
+    "README.md",
+    "src/"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
