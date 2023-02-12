@@ -22,8 +22,6 @@ const App = () => {
       zoom: 14,
     });
 
-    console.log("afafa");
-
     mapboxDrawRef.current = new MapboxDraw({
       displayControlsDefault: false,
       controls: {
@@ -35,7 +33,6 @@ const App = () => {
         draw_paint_mode: PaintMode,
       },
     });
-    console.log(mapboxDrawRef.current);
     const drawPaintBtn = {
       on: "click",
       action: () => {
@@ -78,7 +75,6 @@ const App = () => {
         className="custom_btn"
         onClick={() => {
           console.log(mapboxDrawRef.current.getAll());
-          console.log(mapRef.current.queryRenderedFeatures());
         }}
       >
         Get Feature Collection (Check Console)
