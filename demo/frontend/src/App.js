@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "./App.css";
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
@@ -12,6 +12,23 @@ const App = () => {
   const mapContainer = useRef(null);
   const mapRef = useRef(null);
   const mapboxDrawRef = useRef(null);
+  const [markerLabel, setMarkerLabel] = useState("Marker Label");
+
+  const [isAddingMarker, setIsAddingMarker] = useState(false);
+
+  const handleMarkerButtonClick = () => {
+    setIsAddingMarker(!isAddingMarker);
+  };
+
+  const handleMapClick = (event) => {
+    const lngLat = event.lngLat;
+    const marker = new maplibregl.Marker({})
+      .setLngLat(lngLat)
+      .setPopup(null)
+      .addTo(mapRef.current);
+
+    setIsAddingMarker(false);
+  };
 
   useEffect(() => {
     if (!mapContainer) {
@@ -73,8 +90,23 @@ const App = () => {
     });
     mapRef.current.addControl(drawBar);
   }, []);
+
+  useEffect(() => {
+    if (!mapContainer || !isAddingMarker) {
+      return;
+    }
+
+    mapRef.current.on("click", handleMapClick);
+    return () => {
+      mapRef.current.off("click", handleMapClick);
+    };
+  }, [isAddingMarker]);
+
   return (
     <div className="map-wrap">
+      <button onClick={handleMarkerButtonClick}>
+        {isAddingMarker ? "Stop Adding Markers" : "Add Marker"}
+      </button>
       <button
         className="custom_btn"
         onClick={() => {
