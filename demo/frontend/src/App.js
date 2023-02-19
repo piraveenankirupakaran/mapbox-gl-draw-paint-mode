@@ -9,6 +9,9 @@ import PaintMode from "mapbox-gl-draw-paint-mode";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { extendDrawBar } from "./utils/extendDrawBar";
 
+import MapboxWorker from "worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker";
+mapboxgl.workerClass = MapboxWorker; // Wire up loaded worker to be used instead of the default
+
 const App = () => {
   const mapContainer = useRef(null);
   const mapRef = useRef(null);
@@ -16,6 +19,7 @@ const App = () => {
   const [markerLabel, setMarkerLabel] = useState("Marker Label");
 
   const [isAddingMarker, setIsAddingMarker] = useState(false);
+  const [lineColor, setLineColor] = useState("#f4424b");
 
   const handleMarkerButtonClick = () => {
     setIsAddingMarker(!isAddingMarker);
@@ -23,7 +27,7 @@ const App = () => {
 
   const handleMapClick = (event) => {
     const lngLat = event.lngLat;
-    const marker = new maplibregl.Marker({})
+    const marker = new maplibregl.Marker({ draggable: true })
       .setLngLat(lngLat)
       .setPopup(null)
       .addTo(mapRef.current);
@@ -54,6 +58,28 @@ const App = () => {
         ...MapboxDraw.modes,
         draw_paint_mode: PaintMode,
       },
+      // styles: [
+      //   // Customize the line style to use the lineColor state variable
+      //   {
+      //     id: "gl-draw-line",
+      //     type: "line",
+      //     filter: [
+      //       "all",
+      //       ["==", "$type", "LineString"],
+      //       ["!=", "mode", "static"],
+      //     ],
+      //     layout: {
+      //       "line-cap": "round",
+      //       "line-join": "round",
+      //     },
+      //     paint: {
+      //       "line-color": lineColor,
+      //       "line-dasharray": [0.2, 2],
+      //       "line-width": 4,
+      //       "line-opacity": 0.7,
+      //     },
+      //   },
+      // ],
     });
     const drawPaintBtn = {
       on: "click",
