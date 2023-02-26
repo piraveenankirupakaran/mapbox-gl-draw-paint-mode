@@ -55,3 +55,8 @@ To use the Mapbox GL Draw Freestyle Mode, you need to have a Mapbox GL JS map wi
            styles: drawStyle,
        });
    ```
+To use the Mapbox GL Draw Freestyle Mode, simply click anywhere on the map to start drawing. To stop drawing, double click on the map. The drawn feature can then be moved or deleted using the Mapbox Draw toolbar.
+
+## Contributing
+If you find a bug or have a feature request, please open an issue or submit a pull request on the GitHub repository.
+
