@@ -1,7 +1,7 @@
 import * as doubleClickZoom from "./lib/double_click_zoom";
 import * as Constants from "./lib/Constants";
 import "./icon/paint-brush.css";
-
+import DrawPointWithText from "./DrawPointWithText";
 var PaintMode = {};
 
 PaintMode.onSetup = function () {
@@ -76,4 +76,4 @@ PaintMode.toDisplayFeatures = function (state, geojson, display) {
   display(geojson);
 };
 
-export default PaintMode;
+export default { PaintMode, DrawPointWithText };
