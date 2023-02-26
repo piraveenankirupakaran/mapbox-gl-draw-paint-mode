@@ -7,6 +7,7 @@ import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
 import PaintMode from "mapbox-gl-draw-paint-mode";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { extendDrawBar } from "./utils/extendDrawBar";
+import styles from "./drawStyles";
 
 const App = () => {
   const mapContainer = useRef(null);
@@ -37,18 +38,7 @@ const App = () => {
         ...MapboxDraw.modes,
         draw_paint_mode: PaintMode,
       },
-      // styles: [
-      //   // Style for a point feature
-      //   // Default style
-      //   {
-      //     id: "gl-draw-line",
-      //     type: "line",
-      //     paint: {
-      //       "line-color": colour,
-      //       "line-width": 7,
-      //     },
-      //   },
-      // ],
+      styles: styles,
     });
     const drawPaintBtn = {
       on: "click",
