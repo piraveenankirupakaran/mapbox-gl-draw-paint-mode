@@ -79,7 +79,7 @@ const styles = [
       "line-join": "round",
     },
     paint: {
-      "line-color": "#3bb2d0",
+      "line-color": "#ffa07a",
       "line-width": 10,
     },
   },
