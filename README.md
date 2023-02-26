@@ -14,10 +14,10 @@ Live demo is [here](mapbox-gl-draw-paint-mode.vercel.app)
 
 ## Features:
 
-* Allows users to draw freestyle on the map by drawing multiple lines.
-* The drawn feature can be moved to a different location.
-* The drawn feature can be deleted.
-* Works with both MapLibre GL and Mapbox GL *(Demo uses MapLibre GL)*
+- Allows users to draw freestyle on the map by drawing multiple lines.
+- The drawn feature can be moved to a different location.
+- The drawn feature can be deleted.
+- Works with both MapLibre GL and Mapbox GL _(Demo uses MapLibre GL)_
 
 ## Getting Started
 
@@ -28,6 +28,7 @@ To use the Mapbox GL Draw Freestyle Mode, you need to have a Mapbox GL JS map wi
    ` npm i mapbox-gl mapbox-gl-draw mapbox-gl-draw-paint-mode`
 
    ` npm i maplibre-gl mapbox-gl-draw mapbox-gl-draw-paint-mode`
+
 2. Import Mapbox GL JS/MapLibre GLMapbox GL JS and Mapbox GL Draw in your project.
 
    ```
@@ -36,6 +37,7 @@ To use the Mapbox GL Draw Freestyle Mode, you need to have a Mapbox GL JS map wi
    import MapboxDraw from '@mapbox/mapbox-gl-draw';
    import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
    ```
+
 3. Import the PaintMode.
 
    ```
