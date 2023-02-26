@@ -12,6 +12,7 @@ const App = () => {
   const mapContainer = useRef(null);
   const mapRef = useRef(null);
   const mapboxDrawRef = useRef(null);
+  const [colour, setColour] = useState("#000000");
 
   useEffect(() => {
     if (!mapContainer) {
@@ -36,6 +37,18 @@ const App = () => {
         ...MapboxDraw.modes,
         draw_paint_mode: PaintMode,
       },
+      // styles: [
+      //   // Style for a point feature
+      //   // Default style
+      //   {
+      //     id: "gl-draw-line",
+      //     type: "line",
+      //     paint: {
+      //       "line-color": colour,
+      //       "line-width": 7,
+      //     },
+      //   },
+      // ],
     });
     const drawPaintBtn = {
       on: "click",
