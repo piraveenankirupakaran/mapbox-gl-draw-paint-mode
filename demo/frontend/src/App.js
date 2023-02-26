@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import maplibregl from "maplibre-gl";
+import maplibregl from "!maplibre-gl"; // eslint-disable-line import/no-webpack-loader-syntax
 import "./App.css";
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
 import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
