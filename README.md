@@ -10,7 +10,7 @@ To install:
 
 Live demo is [here](mapbox-gl-draw-paint-mode.vercel.app)
 
-![Demo gif](assets/PaintModeDemo.gif)
+![Demo gif](docs/PaintModeDemo.gif)
 
 ## Features:
 
