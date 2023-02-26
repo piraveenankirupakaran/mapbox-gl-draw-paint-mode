@@ -1,6 +1,6 @@
 import * as doubleClickZoom from "./lib/double_click_zoom";
 import * as Constants from "./lib/Constants";
-import "./icon/paint-brush.css"; //
+import "./icon/paint-brush.css";
 
 var PaintMode = {};
 
