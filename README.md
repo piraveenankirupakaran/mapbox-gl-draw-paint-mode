@@ -8,7 +8,7 @@ This mode used to be one of the core modes prior to the `v1.0.0` release of Mapb
 To install:
 `npm i mapbox-gl-draw-paint-mode`
 
-Live demo is [here](mapbox-gl-draw-paint-mode.vercel.app)
+Live demo is [here](https://mapbox-gl-draw-paint-mode.vercel.app/)
 
 ![Demo gif](docs/PaintModeDemo.gif)
 
