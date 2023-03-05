@@ -1,7 +1,7 @@
 import * as doubleClickZoom from "./lib/double_click_zoom";
 import * as Constants from "./lib/Constants";
 import "./icon/paint-brush.css";
-import DrawPointWithText from "./DrawPointWithText";
+
 var PaintMode = {};
 
 PaintMode.onSetup = function () {
@@ -18,9 +18,12 @@ PaintMode.onTap = PaintMode.onClick = function (state, e) {
     state.features.push(state.currentLine);
     state.currentLine = null;
     this.changeMode(Constants.modes.SIMPLE_SELECT);
+
     this.map.fire("draw.create", {
       type: "FeatureCollection",
+
       features: state.features.map((coordinates) => ({
+        id: state.currentLineFeature.id,
         type: "Feature",
         properties: {},
         geometry: {
@@ -76,4 +79,4 @@ PaintMode.toDisplayFeatures = function (state, geojson, display) {
   display(geojson);
 };
 
-export default { PaintMode, DrawPointWithText };
+export default PaintMode;
