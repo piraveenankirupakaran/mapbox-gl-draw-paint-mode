@@ -1,4 +1,5 @@
 import * as doubleClickZoom from "./lib/double_click_zoom";
+import * as dragPan from "./lib/drag_pan";
 import * as Constants from "./lib/Constants";
 import "./icon/paint-brush.css";
 
@@ -10,36 +11,50 @@ PaintMode.onSetup = function () {
   state.currentLine = null;
   state.currentLineFeature = null;
   doubleClickZoom.disable(this);
+  if(isTouchDevice()){
+    dragPan.disable(this);
+  }  
   return state;
 };
 
-PaintMode.onTap = PaintMode.onClick = function (state, e) {
+PaintMode.onClick = function (state, e) {
   if (e.originalEvent.detail === 2) {
-    state.features.push(state.currentLine);
-    state.currentLine = null;
-    this.changeMode(Constants.modes.SIMPLE_SELECT);
-
-    this.map.fire("draw.create", {
-      type: "FeatureCollection",
-
-      features: state.features.map((coordinates) => ({
-        id: state.currentLineFeature.id,
-        type: "Feature",
-        properties: {},
-        geometry: {
-          type: "MultiLineString",
-          coordinates: [coordinates],
-        },
-      })),
-    });
-    doubleClickZoom.disable(this);
+    stopDrawing(state, e, this);
   } else {
-    state.currentLine = state.currentLine || [];
-    state.currentLine.push([e.lngLat.lng, e.lngLat.lat]);
+    startDrawing(state, e);
   }
 };
 
-PaintMode.onMouseMove = function (state, e) {
+PaintMode.onTouchStart = function (state, e) {
+  startDrawing(state, e);
+};
+
+PaintMode.onTouchEnd = function (state, e) {
+  stopDrawing(state, e, this);
+};
+
+function startDrawing(state, e) {
+  state.currentLine = state.currentLine || [];
+  state.currentLine.push([e.lngLat.lng, e.lngLat.lat]);
+}
+function stopDrawing(state, e, me) {
+  state.features.push(state.currentLine);
+  state.currentLine = null;
+  me.changeMode(Constants.modes.SIMPLE_SELECT);
+  me.map.fire("draw.create", {
+    type: "FeatureCollection",
+    features: state.features.map((coordinates) => ({
+      type: "Feature",
+      properties: {},
+      geometry: {
+        type: "MultiLineString",
+        coordinates: [coordinates],
+      },
+    })),
+  });
+}
+
+PaintMode.onMouseMove = PaintMode.onTouchMove = function (state, e) {
   if (!state.currentLine) return;
 
   state.currentLine.push([e.lngLat.lng, e.lngLat.lat]);
@@ -78,5 +93,16 @@ PaintMode.onMouseMove = function (state, e) {
 PaintMode.toDisplayFeatures = function (state, geojson, display) {
   display(geojson);
 };
+
+PaintMode.onStop = function (state) {
+  dragPan.enable(this);
+  doubleClickZoom.enable(this);
+};
+
+function isTouchDevice() {
+  return (('ontouchstart' in window) ||
+     (navigator.maxTouchPoints > 0) ||
+     (navigator.msMaxTouchPoints > 0));
+}
 
 export default PaintMode;
